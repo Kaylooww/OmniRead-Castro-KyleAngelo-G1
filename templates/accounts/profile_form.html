@@ -1,11 +1,16 @@
 {% extends "base.html" %}
+{% block title %}Edit Profile · OmniRead{% endblock %}
+
 {% block content %}
-<div class="card card-body mx-auto" style="max-width: 480px">
-  <h2>Edit profile</h2>
-  <form method="post">{% csrf_token %}
-    {{ form.as_p }}
-    <button class="btn btn-primary">Save</button>
-    <a class="btn btn-link" href="{% url 'profile' %}">Cancel</a>
-  </form>
+<div class="container py-5" style="max-width: 640px">
+  <div class="panel">
+    <h2>Edit profile</h2>
+    <form method="post" class="form-box mt-3">
+      {% csrf_token %}
+      {% include "includes/form_fields.html" %}
+      <button type="submit" class="btn btn-brand">Save changes</button>
+      <a class="btn btn-outline-brand" href="{% url 'profile' %}">Cancel</a>
+    </form>
+  </div>
 </div>
 {% endblock %}

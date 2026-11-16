@@ -1,11 +1,39 @@
 {% extends "base.html" %}
+{% load static %}
+{% block title %}Sign up · OmniRead{% endblock %}
+
 {% block content %}
-<div class="card card-body mx-auto" style="max-width: 480px">
-  <h2>Create your account</h2>
-  <form method="post">{% csrf_token %}
-    {{ form.as_p }}
-    <button class="btn btn-primary w-100">Sign up</button>
-  </form>
-  <p class="mt-3">Have an account? <a href="{% url 'login' %}">Log in</a></p>
+<div class="auth-page">
+
+  <!-- Left side: welcome text; the picture is set in omniread.css (.auth-intro). Hidden on phones. -->
+  <section class="auth-intro">
+    <div class="auth-intro-text">
+      <h1>Start your <span class="gold">personal library.</span></h1>
+      <p class="fs-5 muted">Own DRM-free EPUB and PDF books, read offline anytime, and enjoy permanent access to the stories you love.</p>
+      <ul class="perks">
+        <li><i class="bi bi-book"></i><div><strong>DRM-Free Ownership</strong>Get EPUB &amp; PDF books you truly own.</div></li>
+        <li><i class="bi bi-download"></i><div><strong>Read Offline</strong>Download and enjoy your books anywhere.</div></li>
+        <li><i class="bi bi-infinity"></i><div><strong>Permanent Access</strong>Your library is yours, forever.</div></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Right side: the sign-up form -->
+  <section class="auth-form-side">
+    <div class="auth-card">
+      <div class="card-icon"><i class="bi bi-book-half"></i></div>
+      <h2>Create your account</h2>
+      <p class="text-center muted mb-4">Join OmniRead and build a library of books you truly own.</p>
+
+      <form method="post" class="form-box">
+        {% csrf_token %}
+        {% include "includes/form_fields.html" %}
+        <button type="submit" class="btn btn-brand w-100 mt-2">Create Account <i class="bi bi-arrow-right"></i></button>
+      </form>
+
+      <p class="text-center mt-4 mb-0">Already have an account? <a href="{% url 'login' %}">Log in</a></p>
+    </div>
+  </section>
+
 </div>
 {% endblock %}

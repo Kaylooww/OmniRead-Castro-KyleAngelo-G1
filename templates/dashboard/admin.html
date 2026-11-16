@@ -1,13 +1,52 @@
 {% extends "base.html" %}
+{% block title %}Admin Dashboard · OmniRead{% endblock %}
+
 {% block content %}
-<h2>Admin Dashboard</h2>
-<div class="row g-3 mb-3">
-  <div class="col-6 col-md-3"><div class="card card-body text-center"><h3>{{ reader_count }}</h3>Readers</div></div>
-  <div class="col-6 col-md-3"><div class="card card-body text-center"><h3>{{ admin_count }}</h3>Admins</div></div>
-</div>
-<div class="row g-3">
-  <div class="col-md-4"><div class="card card-body"><h5>Manage Ebooks</h5><p class="mb-0">Coming soon</p></div></div>
-  <div class="col-md-4"><div class="card card-body"><h5>Customer Orders</h5><p class="mb-0">Coming soon</p></div></div>
-  <div class="col-md-4"><div class="card card-body"><h5>Users</h5><a href="/admin/">Open Django admin</a></div></div>
+<div class="container-fluid px-4 py-4">
+
+  <h1 class="section-title">Admin Dashboard</h1>
+  <p class="muted ms-3">Welcome, {{ user.first_name|default:user.username }}. Manage the OmniRead store from here.</p>
+
+  <!-- Numbers -->
+  <div class="row g-4 mb-4">
+    <div class="col-6 col-md-3">
+      <div class="panel text-center">
+        <div class="stat-number">{{ reader_count }}</div>
+        <span class="muted">Readers</span>
+      </div>
+    </div>
+    <div class="col-6 col-md-3">
+      <div class="panel text-center">
+        <div class="stat-number">{{ admin_count }}</div>
+        <span class="muted">Admins</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Admin tools ("#" links are features you will build later) -->
+  <div class="row g-4">
+    <div class="col-md-4">
+      <div class="panel h-100">
+        <h3><i class="bi bi-journal-plus"></i> Manage Ebooks</h3>
+        <p class="muted">Add ebooks, set prices, and upload EPUB/PDF files.</p>
+        <a class="btn btn-outline-brand" href="#">Coming soon</a>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="panel h-100">
+        <h3><i class="bi bi-receipt"></i> Customer Orders</h3>
+        <p class="muted">View orders and sandbox payment results.</p>
+        <a class="btn btn-outline-brand" href="#">Coming soon</a>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="panel h-100">
+        <h3><i class="bi bi-people"></i> Users</h3>
+        <p class="muted">See accounts and change user roles.</p>
+        <a class="btn btn-brand" href="{% url 'user_list' %}">Manage Users</a>
+      </div>
+    </div>
+  </div>
+
 </div>
 {% endblock %}
