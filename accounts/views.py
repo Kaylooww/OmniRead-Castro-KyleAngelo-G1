@@ -1,12 +1,21 @@
 from django.contrib import messages
+from django.contrib.auth import logout
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
+from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, TemplateView, UpdateView
 
 from .forms import ProfileForm, SignUpForm
 
 # Create your views here.
+def logout_view(request):
+    """Log the user out (from a button or the address bar), then go to the login page."""
+    logout(request)
+    messages.success(request, "You have been logged out.")
+    return redirect("login")
+
+
 class SignUpView(SuccessMessageMixin, CreateView):
     form_class = SignUpForm
     template_name = "registration/signup.html"
