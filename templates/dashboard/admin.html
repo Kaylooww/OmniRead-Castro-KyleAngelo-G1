@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Admin Dashboard</h2>
+<div class="row g-3 mb-3">
+  <div class="col-6 col-md-3"><div class="card card-body text-center"><h3>{{ reader_count }}</h3>Readers</div></div>
+  <div class="col-6 col-md-3"><div class="card card-body text-center"><h3>{{ admin_count }}</h3>Admins</div></div>
+</div>
+<div class="row g-3">
+  <div class="col-md-4"><div class="card card-body"><h5>Manage Ebooks</h5><p class="mb-0">Coming soon</p></div></div>
+  <div class="col-md-4"><div class="card card-body"><h5>Customer Orders</h5><p class="mb-0">Coming soon</p></div></div>
+  <div class="col-md-4"><div class="card card-body"><h5>Users</h5><a href="/admin/">Open Django admin</a></div></div>
+</div>
+{% endblock %}
