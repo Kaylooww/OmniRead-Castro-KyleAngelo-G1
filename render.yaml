@@ -1,0 +1,19 @@
+# Render Blueprint: creates the OmniRead web service from this file.
+# Docs: https://render.com/docs/blueprint-spec
+services:
+  - type: web
+    name: omniread
+    runtime: python
+    plan: free
+    branch: main
+    buildCommand: pip install -r requirements.txt && python manage.py collectstatic --no-input && python manage.py migrate
+    startCommand: gunicorn omniread.wsgi:application
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.10
+      - key: DEBUG
+        value: "False"
+      - key: SECRET_KEY
+        generateValue: true # Render creates a random secret key
+      - key: DATABASE_URL
+        sync: false # Render asks you to paste your Supabase URL; it is never stored in this file
