@@ -131,7 +131,7 @@ MAILERS = {
     },
 }
 
-#AUTH_USER_MODEL = "accounts.CustomUser"
+AUTH_USER_MODEL = "accounts.CustomUser"
 LOGIN_REDIRECT_URL = "dashboard"
 LOGOUT_REDIRECT_URL = "login"
 DEFAULT_AUTO_FIELD = "django.db.models.AutoField"  # SERIAL ids, matching the SDD
