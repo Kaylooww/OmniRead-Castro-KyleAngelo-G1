@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Review Cart | OmniRead{% endblock %}
+{% block content %}
+<div class="container py-4">
+  <h1>Review Cart</h1>
+  {% for item, price in lines %}
+    <article class="panel my-3">
+      <h2 class="h4">{{ item.ebook.title }}</h2>
+      {% if price %}
+        <p>PHP {{ price|floatformat:2 }}</p>
+      {% else %}
+        <p>This ebook is unavailable and excluded from the total.</p>
+      {% endif %}
+      <form method="post" action="{% url 'cart:remove' item.pk %}">
+        {% csrf_token %}
+        <button class="btn btn-outline-brand" type="submit">Remove</button>
+      </form>
+    </article>
+  {% empty %}
+    <p class="muted">Your cart is empty.</p>
+  {% endfor %}
+
+  <p><strong>Total: PHP {{ total|floatformat:2 }}</strong></p>
+  <a class="btn btn-brand" href="{% url 'cart:edit' %}">Edit selection</a>
+  <a class="btn btn-outline-brand" href="{% url 'cart:catalog' %}">Continue browsing</a>
+</div>
+{% endblock %}
