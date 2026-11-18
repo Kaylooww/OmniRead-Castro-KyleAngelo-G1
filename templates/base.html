@@ -30,7 +30,7 @@
           <a href="#"><i class="bi bi-receipt"></i> Orders</a>
         {% else %}
           <a href="{% url 'reader_dashboard' %}" class="{% if page == 'reader_dashboard' %}active{% endif %}"><i class="bi bi-house"></i> Discover</a>
-          <a href="#"><i class="bi bi-book"></i> Explore Books</a>
+          <a href="{% url 'cart:catalog' %}"{% if request.resolver_match.view_name == 'cart:catalog' %} class="active"{% endif %}><i class="bi bi-book"></i> Explore Books</a>
           <a href="#"><i class="bi bi-journal-bookmark"></i> My Library</a>
           <a href="#"><i class="bi bi-download"></i> Downloads</a>
         {% endif %}
@@ -42,7 +42,7 @@
             <i class="bi bi-search"></i>
             <input type="search" placeholder="Search books, authors, genres..." aria-label="Search books">
           </form>
-          <a class="icon-link" href="#" aria-label="Cart"><i class="bi bi-cart3"></i></a>
+          <a class="icon-link" href="{% url 'cart:review' %}" aria-label="Cart"><i class="bi bi-cart3"></i></a>
         {% endif %}
 
         <!-- Account menu (needs the Bootstrap JS at the bottom of the page) -->

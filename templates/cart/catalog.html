@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}Explore Books | OmniRead{% endblock %}
+{% block content %}
+<div class="container py-4">
+  <div class="d-flex flex-wrap align-items-center justify-content-between gap-2">
+    <h1>Explore Books</h1>
+    <a class="btn btn-outline-brand" href="{% url 'cart:review' %}">Review Cart</a>
+  </div>
+
+  {% for ebook in ebooks %}
+    <article class="panel my-3">
+      <h2 class="h4">{{ ebook.title }}</h2>
+      {% if ebook.synopsis %}<p>{{ ebook.synopsis }}</p>{% endif %}
+      <p>PHP {{ ebook.price|floatformat:2 }}</p>
+      <form method="post" action="{% url 'cart:add' ebook.pk %}">
+        {% csrf_token %}
+        <button class="btn btn-brand" type="submit">Add to cart</button>
+      </form>
+    </article>
+  {% empty %}
+    <p class="muted mt-3">There are no ebooks available yet.</p>
+  {% endfor %}
+</div>
+{% endblock %}
