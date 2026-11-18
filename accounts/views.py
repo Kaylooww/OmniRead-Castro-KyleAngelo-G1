@@ -2,9 +2,12 @@ from django.contrib import messages
 from django.contrib.auth import logout
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
+from django.db import transaction
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, TemplateView, UpdateView
+
+from cart.models import Cart
 
 from .forms import ProfileForm, SignUpForm
 
@@ -21,6 +24,12 @@ class SignUpView(SuccessMessageMixin, CreateView):
     template_name = "registration/signup.html"
     success_url = reverse_lazy("login")
     success_message = "Account created! You can now log in."
+
+    @transaction.atomic
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        Cart.objects.get_or_create(user=self.object)
+        return response
 
     def form_invalid(self, form):
         messages.error(self.request, "Please fix the errors below.")

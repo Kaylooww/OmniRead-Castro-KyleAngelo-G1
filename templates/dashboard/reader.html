@@ -9,7 +9,8 @@
     <span class="pill-gold"><i class="bi bi-file-earmark-text"></i> DRM-free EPUB &amp; PDF</span>
     <h1 class="mt-3">Your books. <span class="gold">Truly yours.</span></h1>
     <p class="fs-5">Welcome, {{ user.first_name|default:user.username }}! Discover stories you can own, download, and read offline.</p>
-    <a class="btn btn-brand" href="#">Explore Collection <i class="bi bi-chevron-right"></i></a>
+    <a class="btn btn-brand" href="{% url 'cart:catalog' %}">Explore Collection <i class="bi bi-chevron-right"></i></a>
+    <a class="btn btn-outline-brand" href="{% url 'cart:review' %}">Review Cart</a>
   </section>
 
   <div class="row g-4">
@@ -23,7 +24,7 @@
         <div>
           <h3>No books available yet</h3>
           <p class="muted">Our catalog is currently empty, but exciting reads are on the way.</p>
-          <a class="btn btn-brand" href="#"><i class="bi bi-book"></i> Browse Catalog</a>
+          <a class="btn btn-brand" href="{% url 'cart:catalog' %}"><i class="bi bi-book"></i> Browse Catalog</a>
         </div>
       </div>
 
@@ -46,7 +47,7 @@
         <div class="card-icon mt-4"><i class="bi bi-bookshelf"></i></div>
         <h4>Your library is empty</h4>
         <p class="muted">Books you purchase will appear here.</p>
-        <a class="btn btn-brand w-100" href="#"><i class="bi bi-cart3"></i> Browse Catalog</a>
+        <a class="btn btn-brand w-100" href="{% url 'cart:catalog' %}"><i class="bi bi-cart3"></i> Browse Catalog</a>
       </aside>
     </div>
 
